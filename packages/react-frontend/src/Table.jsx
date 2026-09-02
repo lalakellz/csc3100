@@ -24,7 +24,11 @@ function TableBody(props) {
       </tr>
     );
   });
-  return <tbody>{rows}</tbody>;
+  return (
+    <tbody>
+      {rows}
+    </tbody>
+  );
 }
 
 function Table(props) {
@@ -38,6 +42,5 @@ function Table(props) {
     </table>
   );
 }
-
 
 export default Table;
