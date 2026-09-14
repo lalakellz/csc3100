@@ -1,5 +1,7 @@
 // backend.js
 import express from "express";
+import cors from "cors";
+
 
 const app = express();
 const port = 8000;
@@ -42,6 +44,7 @@ const findUserByNameJob = (name, job) => {
 const findUserById = (id) =>
   users["users_list"].find((user) => user["id"] === id);
 
+app.use(cors());
 app.use(express.json());
 
 const addUser = (user) => {
@@ -95,5 +98,4 @@ app.delete("/users/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+  console.log(`Example app li
