@@ -47,9 +47,14 @@ const findUserById = (id) =>
 app.use(cors());
 app.use(express.json());
 
+const generateId = () => {
+  return Math.floor(Math.random() * 1000000).toString();
+};
+
 const addUser = (user) => {
-  users["users_list"].push(user);
-  return user;
+  const newUser = {id: generateId(), ...user };
+  users["users_list"].push(newUser);
+  return newUser;
 };
 
 const deleteUser = (id) => {
@@ -87,15 +92,8 @@ app.get("/users/:id", (req, res) => {
 
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
-  addUser(userToAdd);
-  res.send();
+  const newUser = addUser(userToAdd);
+  res.status(201).send(newUser);
 });
 
-app.delete("/users/:id", (req, res) => {
-  const id = req.params["id"]; 
-  deleteUser(id);
-  res.send();
-});
-
-app.listen(port, () => {
-  console.log(`Example app li
+app.delete("/users/:id", (req,
