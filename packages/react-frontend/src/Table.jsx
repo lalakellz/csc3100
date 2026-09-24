@@ -40,4 +40,9 @@ function Table(props) {
       <TableBody
         characterData={props.characterData}
         removeCharacter={props.removeCharacter}
-    
+      />
+    </table>
+  );
+}
+
+export default Table;

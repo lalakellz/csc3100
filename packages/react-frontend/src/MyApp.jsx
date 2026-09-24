@@ -54,4 +54,27 @@ function MyApp() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(person)
+    body: JSON.stringify(person),
+  });
+
+  return promise;
+}
+
+  useEffect(() => {
+  fetchUsers()
+    .then((res) => res.json())
+    .then((json) => setCharacters(json["users_list"]))
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
+
+  return (
+    <div className="container">
+      <Table characterData={characters} removeCharacter={removeOneCharacter} />
+      <Form handleSubmit={updateList} />
+    </div>
+  );
+}
+
+export default MyApp;
